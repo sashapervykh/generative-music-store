@@ -6,6 +6,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: rgb(218, 232, 236);
 }
 
 * {
@@ -14,7 +15,7 @@ body {
 
 #root {
   max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }

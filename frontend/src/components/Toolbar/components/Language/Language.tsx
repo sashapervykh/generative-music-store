@@ -1,8 +1,6 @@
-import { Flex, Select } from "antd";
-import { Typography } from "antd";
 import { useState } from "react";
-
-const { Text } = Typography;
+import { Select } from "antd";
+import { Label } from "../../../../shared/components/Label/Label";
 
 export function Language() {
   const [value, setValue] = useState("English");
@@ -12,10 +10,7 @@ export function Language() {
   };
 
   return (
-    <Flex vertical gap="small">
-      <label htmlFor="language">
-        <Text>Language</Text>
-      </label>
+    <Label label={"language"}>
       <Select
         className="w-auto"
         value={value}
@@ -26,6 +21,6 @@ export function Language() {
           { value: "german", label: "German" },
         ]}
       />
-    </Flex>
+    </Label>
   );
 }

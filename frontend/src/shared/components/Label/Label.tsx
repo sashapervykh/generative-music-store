@@ -10,7 +10,7 @@ interface Props {
 const { Text } = Typography;
 export function Label({ children, label }: Props) {
   return (
-    <Flex vertical gap="small">
+    <Flex className="relative" vertical gap="small">
       <label htmlFor={label}>
         <Text>{label}</Text>
       </label>

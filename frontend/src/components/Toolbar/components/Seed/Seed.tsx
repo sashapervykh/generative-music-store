@@ -1,24 +1,24 @@
-import { Flex } from "antd";
-import { Typography } from "antd";
-
-const { Text } = Typography;
+import { Input } from "antd";
+import { Label } from "../../../../shared/components/Label/Label";
+import { ReloadOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 export function Seed() {
+  const [value, setValue] = useState("12345678");
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
+  ) => {
+    setValue(event.target.value);
+  };
   return (
-    <Flex vertical gap="small">
-      <label htmlFor="language">
-        <Text>Language</Text>
-      </label>
-      <Select
-        className="w-auto"
+    <Label label="Seed">
+      <Input
+        id="Seed"
         value={value}
-        id="language"
         onChange={handleChange}
-        options={[
-          { value: "english", label: "English" },
-          { value: "german", label: "German" },
-        ]}
-      />
-    </Flex>
+        suffix={<ReloadOutlined className="cursor-pointer" />}
+      ></Input>
+    </Label>
   );
 }

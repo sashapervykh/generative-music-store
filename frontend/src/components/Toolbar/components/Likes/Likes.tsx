@@ -8,7 +8,7 @@ export function Likes() {
     <Label label="Likes">
       <div className="space-y-2">
         <Slider
-          className="w-50"
+          className="w-full"
           marks={marks}
           step={0.1}
           defaultValue={5}

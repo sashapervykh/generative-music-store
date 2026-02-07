@@ -3,13 +3,15 @@ import { Segmented } from "antd";
 
 export function View() {
   return (
-    <Segmented
-      className="size-fit"
-      orientation="vertical"
-      options={[
-        { value: "Table", icon: <TableOutlined /> },
-        { value: "Gallery", icon: <OrderedListOutlined /> },
-      ]}
-    />
+    <div className="flex ml-auto mr-0 items-center">
+      <Segmented
+        className="flex size-fit ml-auto mr-0"
+        orientation="vertical"
+        options={[
+          { value: "Table", icon: <TableOutlined /> },
+          { value: "Gallery", icon: <OrderedListOutlined /> },
+        ]}
+      />
+    </div>
   );
 }

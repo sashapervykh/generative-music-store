@@ -1,14 +1,16 @@
 import express from "express";
-
+import cors from "cors";
 import { testServer } from "./test.js";
+import dotenv from "dotenv";
 
-const app = express();
+dotenv.config();
 const port = Number(process.env.PORT) || 3000;
+const app = express();
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use(express.json());
-
 app.get("/", (request, response) => {
   const test = testServer();
-  response.send(`${test}: Express + TypeScript Server`);
+  response.send({ message: `${test}: Express + TypeScript Server` });
 });
 
 app.listen(port, () => {

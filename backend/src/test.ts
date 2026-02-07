@@ -1,3 +1,3 @@
 export function testServer() {
-  return "Tested successfully";
+  return "Tested successfully from build";
 }

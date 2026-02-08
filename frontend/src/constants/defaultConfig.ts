@@ -5,7 +5,7 @@ export const DEFAULT_CONFIG = {
   LANGUAGE: {
     OPTIONS: [
       { value: LANGUAGES.ENGLISH, label: LANGUAGES.ENGLISH },
-      { value: LANGUAGES.GERMAN, label: LANGUAGES.ENGLISH },
+      { value: LANGUAGES.GERMAN, label: LANGUAGES.GERMAN },
     ],
     DEFAULT: LANGUAGES.ENGLISH,
   },

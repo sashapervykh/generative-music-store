@@ -1,22 +1,17 @@
 import { Input } from "antd";
 import { Label } from "../../../../shared/components/Label/Label";
 import { ReloadOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useDataConfig } from "../../../../hooks/useDataConfig";
 
 export function Seed() {
-  const [value, setValue] = useState("12345678");
+  const { seed, setSeed } = useDataConfig();
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
-  ) => {
-    setValue(event.target.value);
-  };
   return (
     <Label label="Seed">
       <Input
         id="Seed"
-        value={value}
-        onChange={handleChange}
+        value={seed}
+        onChange={(e) => setSeed(e.target.value)}
         suffix={<ReloadOutlined className="cursor-pointer" />}
       ></Input>
     </Label>

@@ -1,6 +1,6 @@
 import { Slider } from "antd";
 import { Label } from "../../../../shared/components/Label/Label";
-import { useConfig } from "../../../../hooks/useConfig";
+import { useDataConfig } from "../../../../hooks/useDataConfig";
 import { DEFAULT_CONFIG } from "../../../../constants/defaultConfig";
 
 const marks = {
@@ -9,7 +9,7 @@ const marks = {
 };
 
 export function Likes() {
-  const { likes, setLikes } = useConfig();
+  const { likes, setLikes } = useDataConfig();
 
   return (
     <Label label="Likes">

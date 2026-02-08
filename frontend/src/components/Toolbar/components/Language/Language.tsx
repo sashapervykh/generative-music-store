@@ -1,22 +1,17 @@
-import { useState } from "react";
 import { Select } from "antd";
 import { Label } from "../../../../shared/components/Label/Label";
 import { DEFAULT_CONFIG } from "../../../../constants/defaultConfig";
+import { useDataConfig } from "../../../../hooks/useDataConfig";
 
 export function Language() {
-  const [value, setValue] = useState("English");
-
-  const handleChange = (value: string) => {
-    setValue(value);
-  };
-
+  const { language, setLanguage } = useDataConfig();
   return (
     <Label label={"language"}>
       <Select
         className="w-auto"
-        value={value}
+        value={language}
         id="language"
-        onChange={handleChange}
+        onChange={setLanguage}
         options={DEFAULT_CONFIG.LANGUAGE.OPTIONS}
       />
     </Label>

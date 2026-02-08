@@ -1,15 +1,15 @@
 import { Slider } from "antd";
 import { Label } from "../../../../shared/components/Label/Label";
-import { useLikes } from "../../../../hooks/useLikes";
-import { LIKES_RANGE } from "../../../../constants/likesRange";
+import { useConfig } from "../../../../hooks/useConfig";
+import { DEFAULT_CONFIG } from "../../../../constants/defaultConfig";
 
 const marks = {
-  [LIKES_RANGE.MIN]: LIKES_RANGE.MIN,
-  [LIKES_RANGE.MAX]: LIKES_RANGE.MAX,
+  [DEFAULT_CONFIG.LIKES.MIN]: DEFAULT_CONFIG.LIKES.MIN,
+  [DEFAULT_CONFIG.LIKES.MAX]: DEFAULT_CONFIG.LIKES.MAX,
 };
 
 export function Likes() {
-  const { current, setCurrent } = useLikes();
+  const { likes, setLikes } = useConfig();
 
   return (
     <Label label="Likes">
@@ -17,11 +17,11 @@ export function Likes() {
         <Slider
           className="w-full"
           marks={marks}
-          step={LIKES_RANGE.STEP}
-          value={current}
-          defaultValue={LIKES_RANGE.CURRENT_DEFAULT}
-          max={LIKES_RANGE.MAX}
-          onChange={(value) => setCurrent(value)}
+          step={DEFAULT_CONFIG.LIKES.STEP}
+          value={likes}
+          defaultValue={DEFAULT_CONFIG.LIKES.DEFAULT_LIKES}
+          max={DEFAULT_CONFIG.LIKES.MAX}
+          onChange={(value) => setLikes(value)}
         />
       </div>
     </Label>

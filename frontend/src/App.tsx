@@ -1,14 +1,14 @@
 import { AppTitle } from "./components/AppTitle/AppTitle";
 import { Toolbar } from "./components/Toolbar/Toolbar";
-import { LikesProvider } from "./providers/LikesProvider";
+import { DataConfigProvider } from "./providers/DataConfigProvider";
 
 function App() {
   return (
     <>
-      <LikesProvider>
+      <DataConfigProvider>
         <AppTitle />
         <Toolbar />
-      </LikesProvider>
+      </DataConfigProvider>
     </>
   );
 }

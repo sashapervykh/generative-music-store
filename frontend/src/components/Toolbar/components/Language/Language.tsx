@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Select } from "antd";
 import { Label } from "../../../../shared/components/Label/Label";
+import { DEFAULT_CONFIG } from "../../../../constants/defaultConfig";
 
 export function Language() {
   const [value, setValue] = useState("English");
@@ -16,10 +17,7 @@ export function Language() {
         value={value}
         id="language"
         onChange={handleChange}
-        options={[
-          { value: "english", label: "English" },
-          { value: "german", label: "German" },
-        ]}
+        options={DEFAULT_CONFIG.LANGUAGE.OPTIONS}
       />
     </Label>
   );

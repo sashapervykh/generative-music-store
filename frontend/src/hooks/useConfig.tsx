@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { LikesContext } from "../contexts/LikesContext";
+import { DataConfigContext } from "../contexts/DataConfigContext";
 
-export function useLikes() {
-  const context = useContext(LikesContext);
+export function useConfig() {
+  const context = useContext(DataConfigContext);
   if (!context) {
     throw new Error("useLikes should be use inside LikesProvider");
   }

@@ -3,8 +3,8 @@
     "value": "en_US",
     "label": "English (USA)"
   },
-  "de_DE": {
-    "value": "de_DE",
+  "de": {
+    "value": "de",
     "label": "German"
   }
 }

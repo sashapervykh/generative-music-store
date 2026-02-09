@@ -1,4 +1,5 @@
-import { fakerLocales } from "~/locale/faker.js";
+import { allFakers } from "@faker-js/faker";
+import type { Faker } from "@faker-js/faker";
 import type { Song } from "~/types/Song.js";
 
 interface Props {
@@ -7,19 +8,24 @@ interface Props {
 }
 
 class TextGenerator {
+  allFakers: Record<string, Faker> = allFakers;
+
   generateSongsData({ language, seed }: Props): Song[] {
-    console.log(language, seed);
-    const faker = fakerLocales[language];
+    const faker = this.allFakers[language];
     if (!faker) throw new Error("Unsupported locale!");
-    console.log(Object.keys(faker));
     faker.seed(Number(seed));
     const title = faker.music.songName();
-    const artist = faker.music.artist();
-    const album = faker.music.album();
+    const artist = faker.person.fullName();
+    const album = faker.word.noun();
     const genre = faker.music.genre();
 
     return [{ id: 1, title, artist, album, genre }];
   }
+
+  private createTitle(faker: Faker) {}
+  private createArtist() {}
+  private createJenre(faker: Faker) {}
+  private createAlbum() {}
 }
 
 export const textGenerator = new TextGenerator();

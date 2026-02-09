@@ -4,16 +4,21 @@ import { textGenerator } from "~/services/textGenerator.js";
 class GeneratorController {
   generateData(req: Request, res: Response) {
     try {
-      const { language, seed, likes } = req.query;
+      const { language, seed, likes, page } = req.query;
       if (
         !language ||
         typeof language !== "string" ||
         !seed ||
         typeof seed !== "string" ||
-        !likes
+        !likes ||
+        !page
       )
         throw new Error("Invalid arguments provided!");
-      const data = textGenerator.generateAllSongs({ language, seed });
+      const data = textGenerator.generateAllSongs({
+        language,
+        seed,
+        page: Number(page),
+      });
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ error: error });

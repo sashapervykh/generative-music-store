@@ -3,7 +3,7 @@ import { useDataConfig } from "../../hooks/useDataConfig";
 import { API_ROUTES } from "../../constants/apiRoutes";
 
 export function DataLoader({ children }: { children: ReactNode }) {
-  const { language, seed, likes } = useDataConfig();
+  const { language, seed, likes, page } = useDataConfig();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -12,7 +12,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
     const timeoutId = setTimeout(async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}`,
+          `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}&page=${page}`,
           { signal },
         );
 

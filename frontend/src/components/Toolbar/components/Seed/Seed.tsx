@@ -21,7 +21,7 @@ export function Seed() {
         suffix={
           <ReloadOutlined className="cursor-pointer" onClick={handleClick} />
         }
-      ></Input>
+      />
     </Label>
   );
 }

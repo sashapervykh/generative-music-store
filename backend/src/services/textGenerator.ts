@@ -4,33 +4,52 @@ import type { Song } from "~/types/Song.js";
 import locales from "../locale/locales.json" with { type: "json" };
 import type { Locales } from "~/types/Locales.js";
 import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
+import { pageMultiplier, seedMultiplier } from "~/constants/seedNumbers.js";
 
 interface Props {
   seed: string;
   language: string;
+  page: number;
 }
 
 class TextGenerator {
   allFakers: Record<string, Faker> = allFakers;
   locales: Locales = locales;
 
-  generateAllSongs({ language, seed }: Props): Song[] {
+  generateAllSongs({ language, seed, page }: Props): Song[] {
     const faker = this.allFakers[language];
     if (!faker) throw new Error("Unsupported locale!");
     const songs = [];
     for (let i = 0; i < SONGS_PER_PAGE; i++) {
-      songs.push(this.generateSong(faker, language, seed, i));
+      console.log(i);
+      songs.push(this.generateSong(faker, language, seed, page, i));
     }
     return songs;
   }
 
-  generateSong(faker: Faker, language: string, seed: string, index: number) {
-    faker.seed(Number(seed + index));
+  generateSong(
+    faker: Faker,
+    language: string,
+    seed: string,
+    page: number,
+    index: number,
+  ) {
+    const songSeed = this.getSongSeed(seed, page, index);
+    faker.seed(songSeed);
     const title = this.createTitle(faker);
     const artist = this.createArtist(faker);
     const album = this.createAlbum(faker);
     const genre = this.createGenre(language, index);
-    return { id: 1, title, artist, album, genre };
+    return { id: index, title, artist, album, genre };
+  }
+
+  private getSongSeed(seed: string, page: number, index: number) {
+    const songSeed =
+      BigInt(seed) * seedMultiplier +
+      BigInt(page) * pageMultiplier +
+      BigInt(index);
+    const fakerSeed = Number(songSeed % BigInt(Number.MAX_SAFE_INTEGER));
+    return fakerSeed;
   }
 
   private createTitle(faker: Faker) {

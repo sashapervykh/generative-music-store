@@ -9,16 +9,18 @@ export function DataConfigProvider({ children }: { children: ReactNode }) {
   const locale = locales ? locales[0].value : DEFAULT_CONFIG.LANGUAGE.DEFAULT;
   const [language, setLanguage] = useState<string>(locale);
   const [likes, setLikes] = useState(DEFAULT_CONFIG.LIKES.DEFAULT_LIKES);
-
   const [seed, setSeed] = useState(DEFAULT_CONFIG.SEED.DEFAULT);
+  const [page, setPage] = useState(DEFAULT_CONFIG.PAGE.DEFAULT);
 
   const value = {
     language,
     likes,
     seed,
+    page,
     setLanguage,
     setLikes,
     setSeed,
+    setPage,
   };
 
   return (

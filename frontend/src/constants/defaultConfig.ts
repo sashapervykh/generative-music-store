@@ -11,4 +11,5 @@ export const DEFAULT_CONFIG = {
     DEFAULT_LIKES: 5,
     STEP: 0.1,
   },
+  PAGE: { DEFAULT: 1 },
 };

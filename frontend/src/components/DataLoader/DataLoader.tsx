@@ -33,7 +33,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
       clearTimeout(timeoutId);
       controller.abort();
     };
-  }, [language, seed, likes]);
+  }, [language, seed, likes, page]);
 
   return <>{children}</>;
 }

@@ -1,5 +1,7 @@
+import { getRandomSeed } from "../utils/getRandomSeed";
+
 export const DEFAULT_CONFIG = {
-  SEED: { DEFAULT: "4294967296" },
+  SEED: { DEFAULT: getRandomSeed() },
   LANGUAGE: {
     DEFAULT: "en_US",
   },

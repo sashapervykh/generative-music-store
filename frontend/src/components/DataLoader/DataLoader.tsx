@@ -1,9 +1,11 @@
 import { useEffect, type ReactNode } from "react";
 import { useDataConfig } from "../../hooks/useDataConfig";
 import { API_ROUTES } from "../../constants/apiRoutes";
+import { useSongs } from "../../hooks/useSongs";
 
 export function DataLoader({ children }: { children: ReactNode }) {
   const { language, seed, likes, page } = useDataConfig();
+  const { setSongs } = useSongs();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -21,7 +23,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
         }
 
         const songsData = await response.json();
-        console.log(songsData);
+        setSongs(songsData);
       } catch (error) {
         console.error("Request error:", error);
       }

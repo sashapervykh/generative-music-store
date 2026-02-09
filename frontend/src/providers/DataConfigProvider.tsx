@@ -5,7 +5,6 @@ import { useLocales } from "../hooks/useLocales";
 
 export function DataConfigProvider({ children }: { children: ReactNode }) {
   const { locales } = useLocales();
-  console.log(locales);
   const locale = locales ? locales[0].value : DEFAULT_CONFIG.LANGUAGE.DEFAULT;
   const [language, setLanguage] = useState<string>(locale);
   const [likes, setLikes] = useState(DEFAULT_CONFIG.LIKES.DEFAULT_LIKES);

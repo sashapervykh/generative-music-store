@@ -20,9 +20,13 @@ class TextGenerator {
     const faker = this.allFakers[language];
     if (!faker) throw new Error("Unsupported locale!");
     const songs = [];
-    for (let i = 0; i < SONGS_PER_PAGE; i++) {
+    const startIndex = page * SONGS_PER_PAGE - SONGS_PER_PAGE;
+    const endIndex = page * SONGS_PER_PAGE;
+    console.log(page, language);
+    for (let i = startIndex; i < endIndex; i++) {
       console.log(i);
       songs.push(this.generateSong(faker, language, seed, page, i));
+      console.log(i);
     }
     return songs;
   }
@@ -62,9 +66,10 @@ class TextGenerator {
 
   private createGenre(language: string, index: number) {
     const locale = this.locales[language];
-    if (!locale || !locale.genres[index])
-      throw new Error("Unsupported locale!");
-    return locale.genres[index];
+    if (!locale) throw new Error("Unsupported locale!");
+    const genre = locale.genres[index % locale.genres.length];
+    if (!genre) throw new Error("Unsupported locale!");
+    return genre;
   }
 
   private createAlbum(faker: Faker) {

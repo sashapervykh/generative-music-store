@@ -3,6 +3,7 @@ import type { Faker } from "@faker-js/faker";
 import type { Song } from "~/types/Song.js";
 import locales from "../locale/locales.json" with { type: "json" };
 import type { Locales } from "~/types/Locales.js";
+import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
 
 interface Props {
   seed: string;
@@ -13,15 +14,23 @@ class TextGenerator {
   allFakers: Record<string, Faker> = allFakers;
   locales: Locales = locales;
 
-  generateSongsData({ language, seed }: Props): Song[] {
+  generateAllSongs({ language, seed }: Props): Song[] {
     const faker = this.allFakers[language];
     if (!faker) throw new Error("Unsupported locale!");
-    faker.seed(Number(seed));
+    const songs = [];
+    for (let i = 0; i < SONGS_PER_PAGE; i++) {
+      songs.push(this.generateSong(faker, language, seed, i));
+    }
+    return songs;
+  }
+
+  generateSong(faker: Faker, language: string, seed: string, index: number) {
+    faker.seed(Number(seed + index));
     const title = this.createTitle(faker);
     const artist = this.createArtist(faker);
     const album = this.createAlbum(faker);
-    const genre = this.createGenre(language);
-    return [{ id: 1, title, artist, album, genre }];
+    const genre = this.createGenre(language, index);
+    return { id: 1, title, artist, album, genre };
   }
 
   private createTitle(faker: Faker) {
@@ -32,10 +41,11 @@ class TextGenerator {
     return faker.person.fullName();
   }
 
-  private createGenre(language: string) {
+  private createGenre(language: string, index: number) {
     const locale = this.locales[language];
-    if (!locale || !locale.genres[0]) throw new Error("Unsupported locale!");
-    return locale.genres[0];
+    if (!locale || !locale.genres[index])
+      throw new Error("Unsupported locale!");
+    return locale.genres[index];
   }
 
   private createAlbum(faker: Faker) {

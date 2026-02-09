@@ -13,7 +13,7 @@ class GeneratorController {
         !likes
       )
         throw new Error("Invalid arguments provided!");
-      const data = textGenerator.generateSongsData({ language, seed });
+      const data = textGenerator.generateAllSongs({ language, seed });
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ error: error });

@@ -5,7 +5,13 @@ class GeneratorController {
   generateData(req: Request, res: Response) {
     try {
       const { language, seed, likes } = req.query;
-      if (!language || !seed || !likes)
+      if (
+        !language ||
+        typeof language !== "string" ||
+        !seed ||
+        typeof seed !== "string" ||
+        !likes
+      )
         throw new Error("Invalid arguments provided!");
       const data = textGenerator.generateSongsData({ language, seed });
       res.status(200).json(data);

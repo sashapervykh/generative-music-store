@@ -1,13 +1,7 @@
-import { LANGUAGES } from "./languages";
-
 export const DEFAULT_CONFIG = {
   SEED: { DEFAULT: "4294967296" },
   LANGUAGE: {
-    OPTIONS: [
-      { value: LANGUAGES.ENGLISH, label: LANGUAGES.ENGLISH },
-      { value: LANGUAGES.GERMAN, label: LANGUAGES.GERMAN },
-    ],
-    DEFAULT: LANGUAGES.ENGLISH,
+    DEFAULT: "en_US",
   },
   LIKES: {
     MAX: 10,

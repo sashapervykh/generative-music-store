@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useDataConfig } from "../../hooks/useDataConfig";
+import { API_ROUTES } from "../../constants/apiRoutes";
 
 export function DataLoader({ children }: { children: ReactNode }) {
   const { language, seed, likes } = useDataConfig();
@@ -11,7 +12,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
     const timeoutId = setTimeout(async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}?language=${language}&seed=${seed}&likes=${likes}`,
+          `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}`,
           { signal },
         );
 

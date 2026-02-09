@@ -1,10 +1,8 @@
-import type { LanguagesType } from "./LanguagesType";
-
 export interface DataContextType {
-  language: LanguagesType;
+  language: string;
   seed: string;
   likes: number;
   setSeed: (seed: string) => void;
   setLikes: (likes: number) => void;
-  setLanguage: (language: LanguagesType) => void;
+  setLanguage: (language: string) => void;
 }

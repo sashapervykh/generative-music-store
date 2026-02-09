@@ -33,6 +33,7 @@ export function TableView() {
 
   return (
     <Table<DataType>
+      className="capitalize"
       columns={columns}
       expandable={{
         expandedRowRender: () => <p>To be added later</p>,

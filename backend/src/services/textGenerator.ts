@@ -40,7 +40,7 @@ class TextGenerator {
     const artist = this.createArtist(faker);
     const album = this.createAlbum(faker);
     const genre = this.createGenre(language, index);
-    return { id: index, title, artist, album, genre };
+    return { id: index + 1, title, artist, album, genre };
   }
 
   private getSongSeed(seed: string, page: number, index: number) {

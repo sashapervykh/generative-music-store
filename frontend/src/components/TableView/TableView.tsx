@@ -41,7 +41,11 @@ export function TableView() {
     <Table<DataType>
       className="capitalize"
       columns={columns}
-      pagination={{ current: page, pageSize: 10, total: 1000 }}
+      pagination={{
+        current: page,
+        total: 1000,
+        showSizeChanger: false,
+      }}
       onChange={handleChange}
       expandable={{
         expandedRowRender: () => <p>To be added later</p>,

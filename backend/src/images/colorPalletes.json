@@ -1,0 +1,77 @@
+[
+  {
+    "name": "midnightViolet",
+    "textColor": "#E2E8F0",
+    "backgroundColors": ["#4C1D95", "#7C3AED", "#8B5CF6"]
+  },
+  {
+    "name": "oceanTeal",
+    "textColor": "#F8FAFC",
+    "backgroundColors": ["#0D9488", "#0F766E", "#14B8A6"]
+  },
+  {
+    "name": "sunsetCoral",
+    "textColor": "#FEF2F2",
+    "backgroundColors": ["#DC2626", "#F97316", "#FB923C"]
+  },
+  {
+    "name": "forestEmerald",
+    "textColor": "#F0FDF4",
+    "backgroundColors": ["#047857", "#059669", "#10B981"]
+  },
+  {
+    "name": "royalIndigo",
+    "textColor": "#E0E7FF",
+    "backgroundColors": ["#4338CA", "#5B21B6", "#7C3AED"]
+  },
+  {
+    "name": "citrusLime",
+    "textColor": "#1A1A1A",
+    "backgroundColors": ["#65A30D", "#84CC16", "#A3E635"]
+  },
+  {
+    "name": "arcticBlue",
+    "textColor": "#F0F9FF",
+    "backgroundColors": ["#0284C7", "#0EA5E9", "#38BDF8"]
+  },
+  {
+    "name": "desertRose",
+    "textColor": "#FFF1F2",
+    "backgroundColors": ["#BE123C", "#DB2777", "#EC4899"]
+  },
+  {
+    "name": "charcoalGraphite",
+    "textColor": "#F5F5F4",
+    "backgroundColors": ["#1F2937", "#374151", "#4B5563"]
+  },
+  {
+    "name": "goldenAmber",
+    "textColor": "#1C1917",
+    "backgroundColors": ["#92400E", "#D97706", "#F59E0B"]
+  },
+  {
+    "name": "lavenderMist",
+    "textColor": "#1E1B4B",
+    "backgroundColors": ["#7E22CE", "#A78BFA", "#C4B5FD"]
+  },
+  {
+    "name": "crimsonVelvet",
+    "textColor": "#FEF2F2",
+    "backgroundColors": ["#991B1B", "#DC2626", "#EF4444"]
+  },
+  {
+    "name": "mintFresh",
+    "textColor": "#0F172A",
+    "backgroundColors": ["#059669", "#10B981", "#6EE7B7"]
+  },
+  {
+    "name": "stormPurple",
+    "textColor": "#EDE9FE",
+    "backgroundColors": ["#581C87", "#7E22CE", "#A855F7"]
+  },
+  {
+    "name": "sageGreen",
+    "textColor": "#F8FAF5",
+    "backgroundColors": ["#166534", "#15803D", "#4ADE80"]
+  }
+]

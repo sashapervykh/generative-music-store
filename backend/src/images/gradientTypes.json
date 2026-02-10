@@ -1,0 +1,14 @@
+[
+  "linear-top-bottom",
+  "linear-bottom-top",
+  "linear-left-right",
+  "linear-right-left",
+  "linear-diagonal-tl-br",
+  "linear-diagonal-bl-tr",
+  "radial-center",
+  "radial-top-left",
+  "radial-top-right",
+  "radial-bottom-left",
+  "radial-bottom-right",
+  "conic-center"
+]

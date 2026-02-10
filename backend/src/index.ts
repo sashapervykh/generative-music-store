@@ -4,8 +4,10 @@ import dotenv from "dotenv";
 import { ROUTES } from "./constants/routes.js";
 import { generatorController } from "./controllers/generator.controller.js";
 import { localeController } from "./controllers/locale.controllets.js";
+import { registerFonts } from "./utils/registerFonts.js";
 
 dotenv.config();
+registerFonts();
 const port = Number(process.env.PORT) || 3000;
 const app = express();
 app.use(cors({ origin: process.env.FRONTEND_URL }));

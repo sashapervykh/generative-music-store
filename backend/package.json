@@ -15,9 +15,11 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "canvas": "^3.2.1",
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "seedrandom": "^3.0.5"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",

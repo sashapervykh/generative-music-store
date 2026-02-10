@@ -1,9 +1,10 @@
 import { Select } from "antd";
 import { Label } from "../../../../shared/components/Label/Label";
-import { DEFAULT_CONFIG } from "../../../../constants/defaultConfig";
 import { useDataConfig } from "../../../../hooks/useDataConfig";
+import { useLocales } from "../../../../hooks/useLocales";
 
 export function Language() {
+  const { locales } = useLocales();
   const { language, setLanguage } = useDataConfig();
   return (
     <Label label={"language"}>
@@ -12,7 +13,7 @@ export function Language() {
         value={language}
         id="language"
         onChange={setLanguage}
-        options={DEFAULT_CONFIG.LANGUAGE.OPTIONS}
+        options={locales}
       />
     </Label>
   );

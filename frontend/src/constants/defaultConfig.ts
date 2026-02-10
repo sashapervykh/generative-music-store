@@ -1,13 +1,9 @@
-import { LANGUAGES } from "./languages";
+import { getRandomSeed } from "../utils/getRandomSeed";
 
 export const DEFAULT_CONFIG = {
-  SEED: { DEFAULT: "4294967296" },
+  SEED: { DEFAULT: getRandomSeed() },
   LANGUAGE: {
-    OPTIONS: [
-      { value: LANGUAGES.ENGLISH, label: LANGUAGES.ENGLISH },
-      { value: LANGUAGES.GERMAN, label: LANGUAGES.GERMAN },
-    ],
-    DEFAULT: LANGUAGES.ENGLISH,
+    DEFAULT: "en_US",
   },
   LIKES: {
     MAX: 10,
@@ -15,4 +11,5 @@ export const DEFAULT_CONFIG = {
     DEFAULT_LIKES: 5,
     STEP: 0.1,
   },
+  PAGE: { DEFAULT: 1 },
 };

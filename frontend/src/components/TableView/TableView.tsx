@@ -11,6 +11,7 @@ interface DataType {
   artist: string;
   album: string;
   genre: string;
+  image: string;
 }
 
 const columns: TableColumnsType<DataType> = [
@@ -30,6 +31,7 @@ export function TableView() {
     artist: song.artist,
     album: song.album,
     genre: song.genre,
+    image: song.image,
   }));
   const { page, setPage } = useDataConfig();
 
@@ -48,7 +50,14 @@ export function TableView() {
       }}
       onChange={handleChange}
       expandable={{
-        expandedRowRender: () => <p>To be added later</p>,
+        expandedRowRender: (record) => {
+          console.log(record.image);
+          return (
+            <p>
+              <img src={record.image}></img>
+            </p>
+          );
+        },
       }}
       dataSource={dataToDisplay}
     />

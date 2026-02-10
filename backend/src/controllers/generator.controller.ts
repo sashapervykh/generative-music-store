@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import { imageGenerator } from "~/services/imageService/imageGenerator.js";
 import { textGenerator } from "~/services/textGenerator.js";
 
 class GeneratorController {
@@ -14,12 +15,18 @@ class GeneratorController {
         !page
       )
         throw new Error("Invalid arguments provided!");
-      const data = textGenerator.generateAllSongs({
+      const songs = textGenerator.generateAllSongs({
         language,
         seed,
         page: Number(page),
       });
-      res.status(200).json(data);
+      const songsWithImages = imageGenerator.createAllCovers(
+        seed,
+        songs,
+        Number(page),
+      );
+      console.log(songsWithImages);
+      res.status(200).json(songsWithImages);
     } catch (error) {
       res.status(500).json({ error: error });
     }

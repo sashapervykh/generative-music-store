@@ -22,6 +22,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
           throw new Error("Failed request");
         }
 
+        console.log(response);
         const songsData = await response.json();
         setSongs(songsData);
       } catch (error) {

@@ -4,7 +4,7 @@ import type { Song } from "~/types/Song.js";
 import locales from "../locale/locales.json" with { type: "json" };
 import type { Locales } from "~/types/Locales.js";
 import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
-import { pageMultiplier, seedMultiplier } from "~/constants/seedNumbers.js";
+import { getSongSeed } from "~/utils/getSongSeed.js";
 
 interface Props {
   seed: string;
@@ -22,11 +22,8 @@ class TextGenerator {
     const songs = [];
     const startIndex = page * SONGS_PER_PAGE - SONGS_PER_PAGE;
     const endIndex = page * SONGS_PER_PAGE;
-    console.log(page, language);
     for (let i = startIndex; i < endIndex; i++) {
-      console.log(i);
       songs.push(this.generateSong(faker, language, seed, page, i));
-      console.log(i);
     }
     return songs;
   }
@@ -38,7 +35,7 @@ class TextGenerator {
     page: number,
     index: number,
   ) {
-    const songSeed = this.getSongSeed(seed, page, index);
+    const songSeed = this.getFakerSeed(seed, page, index);
     faker.seed(songSeed);
     const title = this.createTitle(faker);
     const artist = this.createArtist(faker);
@@ -47,11 +44,8 @@ class TextGenerator {
     return { id: index + 1, title, artist, album, genre };
   }
 
-  private getSongSeed(seed: string, page: number, index: number) {
-    const songSeed =
-      BigInt(seed) * seedMultiplier +
-      BigInt(page) * pageMultiplier +
-      BigInt(index);
+  private getFakerSeed(seed: string, page: number, index: number) {
+    const songSeed = getSongSeed(seed, page, index);
     const fakerSeed = Number(songSeed % BigInt(Number.MAX_SAFE_INTEGER));
     return fakerSeed;
   }

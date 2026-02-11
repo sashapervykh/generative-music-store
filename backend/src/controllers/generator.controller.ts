@@ -1,9 +1,10 @@
 import type { Request, Response } from "express";
 import { imageGenerator } from "~/services/imageService/imageGenerator.js";
+import { reviewService } from "~/services/review.service.js";
 import { textGenerator } from "~/services/textGenerator.js";
 
 class GeneratorController {
-  generateData(req: Request, res: Response) {
+  async generateData(req: Request, res: Response) {
     try {
       const { language, seed, likes, page } = req.query;
       if (
@@ -25,8 +26,14 @@ class GeneratorController {
         songs,
         Number(page),
       );
-      console.log(songsWithImages);
-      res.status(200).json(songsWithImages);
+      const songsWithReviews = await reviewService.createAllReviews(
+        seed,
+        songsWithImages,
+        Number(page),
+        language,
+      );
+      console.log(songsWithReviews);
+      res.status(200).json(songsWithReviews);
     } catch (error) {
       res.status(500).json({ error: error });
     }

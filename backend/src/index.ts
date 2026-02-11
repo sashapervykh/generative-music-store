@@ -3,8 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { ROUTES } from "./constants/routes.js";
 import { generatorController } from "./controllers/generator.controller.js";
-import { localeController } from "./controllers/locale.controllets.js";
 import { registerFonts } from "./utils/registerFonts.js";
+import { localeController } from "./controllers/locale.controller.js";
 
 dotenv.config();
 registerFonts();

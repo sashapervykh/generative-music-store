@@ -1,10 +1,11 @@
 import { allFakers } from "@faker-js/faker";
 import type { Faker } from "@faker-js/faker";
 import type { Song } from "~/types/Song.js";
-import locales from "../locale/locales.json" with { type: "json" };
+import locales from "../assets/locale/locales.json" with { type: "json" };
 import type { Locales } from "~/types/Locales.js";
 import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
 import { getSongSeed } from "~/utils/getSongSeed.js";
+import { getCapitalizedWord } from "~/utils/getCapitalizedWord.js";
 
 interface Props {
   seed: string;
@@ -71,10 +72,15 @@ class TextGenerator {
   }
 
   private getAdjectiveNoun(faker: Faker) {
-    return `${faker.word.adjective()} ${faker.word.noun()}`;
+    const adjective = getCapitalizedWord(faker.word.adjective());
+    const noun = getCapitalizedWord(faker.word.noun());
+    return `${adjective} ${noun}`;
   }
   private getTwoAdjectiveNoun(faker: Faker) {
-    return `${faker.word.adjective()} ${faker.word.adjective()} ${faker.word.noun()}`;
+    const firstAdjective = getCapitalizedWord(faker.word.adjective());
+    const secondAdjective = getCapitalizedWord(faker.word.adjective());
+    const noun = getCapitalizedWord(faker.word.noun());
+    return `${firstAdjective} ${secondAdjective} ${noun}`;
   }
   private getVerbNoun(faker: Faker) {
     return `${faker.word.verb()} ${faker.word.noun()}`;

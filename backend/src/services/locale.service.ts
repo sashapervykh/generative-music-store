@@ -1,5 +1,5 @@
 import type { Locales } from "~/types/Locales.js";
-import locales from "../locale/locales.json" with { type: "json" };
+import locales from "../assets/locale/locales.json" with { type: "json" };
 import type { FrontendLocale } from "~/types/FrontendLocale.js";
 
 const typedLocales: Locales = locales;

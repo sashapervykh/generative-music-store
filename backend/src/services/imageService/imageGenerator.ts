@@ -1,9 +1,9 @@
 import type { Song } from "~/types/Song.js";
 import { getSongSeed } from "~/utils/getSongSeed.js";
 import { SeededRNG } from "~/utils/seededRNG.js";
-import pallets from "../../images/colorPallets.json" with { type: "json" };
-import gradients from "../../images/gradientTypes.json" with { type: "json" };
-import fonts from "../../images/fonts/fonts.json" with { type: "json" };
+import pallets from "../../assets/images/colorPallets.json" with { type: "json" };
+import gradients from "../../assets/images/gradientTypes.json" with { type: "json" };
+import fonts from "../../assets/images/fonts/fonts.json" with { type: "json" };
 import { CanvasRenderingContext2D, createCanvas } from "canvas";
 import { AVAILABLE_GRADIENTS } from "./availableGradient.js";
 import { DEFAULT_COLORS } from "./defaultColors.js";
@@ -83,17 +83,16 @@ class ImageGenerator {
     w: number,
     h: number,
   ) {
-    const safeFont = `"${fontFamily}", "Noto Sans"`;
-    const maxTextWidth = w * 0.9;
+    const maxTextWidth = w * 0.8;
     const titleY = h * 0.42;
     const artistY = h * 0.62;
 
-    let titleFontSize = Math.floor(h * 0.11);
-    ctx.font = `bold ${titleFontSize}px ${safeFont}`;
+    let titleFontSize = Math.floor(h * 0.1);
+    ctx.font = `${fontFamily}`;
 
-    while (ctx.measureText(title).width > maxTextWidth && titleFontSize > 12) {
+    while (ctx.measureText(title).width > maxTextWidth && titleFontSize > 10) {
       titleFontSize--;
-      ctx.font = `bold ${titleFontSize}px ${safeFont}`;
+      ctx.font = `${fontFamily}`;
     }
 
     ctx.fillStyle = textColor;
@@ -104,14 +103,14 @@ class ImageGenerator {
     this.addTextStroke(ctx, textColor, title, w / 2, titleY);
 
     let artistFontSize = Math.floor(h * 0.07);
-    ctx.font = `regular ${artistFontSize}px ${safeFont}`;
+    ctx.font = `${fontFamily}`;
 
     while (
       ctx.measureText(artist).width > maxTextWidth &&
       artistFontSize > 10
     ) {
       artistFontSize--;
-      ctx.font = `regular ${artistFontSize}px ${safeFont}`;
+      ctx.font = `${fontFamily}`;
     }
 
     ctx.fillText(artist, w / 2, artistY);

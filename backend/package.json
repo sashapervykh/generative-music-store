@@ -19,7 +19,9 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
-    "seedrandom": "^3.0.5"
+    "node-lame": "^2.0.2",
+    "seedrandom": "^3.0.5",
+    "tone": "^15.1.22"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",

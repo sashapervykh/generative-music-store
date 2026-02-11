@@ -11,7 +11,6 @@ export function registerFonts() {
         process.cwd(),
         `src/assets/images/fonts/${fileName}`,
       );
-      console.log(pathToFile);
       registerFont(pathToFile, {
         family: `${font}`,
         weight: weight.toLowerCase(),

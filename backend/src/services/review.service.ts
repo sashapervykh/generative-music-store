@@ -18,7 +18,6 @@ class ReviewService {
       const review = this.createReview(seed, song, page, reviewTemplate);
       songsWithReviews.push({ ...song, review });
     });
-    console.log(songsWithReviews);
     return songsWithReviews;
   }
   createReview(
@@ -46,13 +45,11 @@ class ReviewService {
 
   private async getReviewsTemplate(language: string) {
     try {
-      console.log(process.cwd());
       const pathToFile = path.join(
         process.cwd(),
         `src/assets/review/${language}.json`,
       );
       const fileUrl = pathToFileURL(pathToFile).href;
-      console.log(fileUrl);
       const reviewTemplates: ReviewTemplate = await import(fileUrl, {
         assert: { type: "json" },
       });

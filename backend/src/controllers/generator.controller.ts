@@ -32,7 +32,6 @@ class GeneratorController {
         Number(page),
         language,
       );
-      console.log(songsWithReviews);
       res.status(200).json(songsWithReviews);
     } catch (error) {
       res.status(500).json({ error: error });

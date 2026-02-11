@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28",
+    "timidity": "^1.3.0"
+  }
+}

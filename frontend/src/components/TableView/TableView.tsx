@@ -12,6 +12,7 @@ interface DataType {
   album: string;
   genre: string;
   image: string;
+  review: string;
 }
 
 const columns: TableColumnsType<DataType> = [
@@ -32,6 +33,7 @@ export function TableView() {
     album: song.album,
     genre: song.genre,
     image: song.image,
+    review: song.review,
   }));
   const { page, setPage } = useDataConfig();
 
@@ -53,9 +55,10 @@ export function TableView() {
         expandedRowRender: (record) => {
           console.log(record.image);
           return (
-            <p>
+            <div>
               <img src={record.image}></img>
-            </p>
+              <p>{record.review}</p>
+            </div>
           );
         },
       }}

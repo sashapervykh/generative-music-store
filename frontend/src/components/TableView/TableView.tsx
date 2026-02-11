@@ -20,10 +20,10 @@ interface DataType {
 
 const columns: TableColumnsType<DataType> = [
   { title: "#", dataIndex: "id" },
-  { title: "Song", dataIndex: "song" },
-  { title: "Artist", dataIndex: "artist" },
-  { title: "Album", dataIndex: "album" },
-  { title: "Genre", dataIndex: "genre" },
+  { title: "SONG", dataIndex: "song" },
+  { title: "ARTIST", dataIndex: "artist" },
+  { title: "ALBUM", dataIndex: "album" },
+  { title: "GENRE", dataIndex: "genre" },
 ];
 
 export function TableView() {

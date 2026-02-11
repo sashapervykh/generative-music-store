@@ -4,4 +4,6 @@ export interface Song {
   artist: string;
   album: string;
   genre: string;
+  review?: string;
+  music?: string;
 }

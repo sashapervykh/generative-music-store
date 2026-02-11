@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import { imageGenerator } from "~/services/imageService/imageGenerator.js";
+import { musicService } from "~/services/music.service.js";
 import { reviewService } from "~/services/review.service.js";
 import { textGenerator } from "~/services/textGenerator.js";
 
@@ -32,8 +33,14 @@ class GeneratorController {
         Number(page),
         language,
       );
-      res.status(200).json(songsWithReviews);
+      const songsWithMusic = await musicService.createAllSongs(
+        seed,
+        Number(page),
+        songsWithReviews,
+      );
+      res.status(200).json(songsWithMusic);
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: error });
     }
   }

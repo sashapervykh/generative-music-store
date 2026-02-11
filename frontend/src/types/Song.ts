@@ -7,4 +7,5 @@ export interface Song {
   image: string;
   review: string;
   music: string;
+  likes: number;
 }

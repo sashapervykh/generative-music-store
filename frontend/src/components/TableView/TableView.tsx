@@ -14,6 +14,7 @@ interface DataType {
   image: string;
   review: string;
   music: string;
+  likes: number;
 }
 
 const columns: TableColumnsType<DataType> = [
@@ -36,6 +37,7 @@ export function TableView() {
     image: song.image,
     review: song.review,
     music: song.music,
+    likes: song.likes,
   }));
   const { page, setPage } = useDataConfig();
 
@@ -61,6 +63,7 @@ export function TableView() {
               <img src={record.image}></img>
               <p>{record.review}</p>
               <audio src={record.music} controls></audio>
+              <p>{record.likes}</p>
             </div>
           );
         },

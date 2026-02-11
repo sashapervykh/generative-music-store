@@ -6,4 +6,5 @@ export interface Song {
   genre: string;
   review?: string;
   music?: string;
+  likes?: number;
 }

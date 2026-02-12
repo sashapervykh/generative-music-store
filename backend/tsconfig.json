@@ -20,5 +20,5 @@
     "verbatimModuleSyntax": true
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*", "../frontend/src/utils"]
+  "include": ["src/**/*"]
 }

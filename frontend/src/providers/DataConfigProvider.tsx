@@ -22,14 +22,26 @@ export function DataConfigProvider({ children }: { children: ReactNode }) {
     if (hasMore) setPage((p) => p + 1);
   };
 
+  const updateSeed = (seed: string) => {
+    setIsLoading(true);
+    setSeed(seed);
+    setPage(1);
+  };
+
+  const updateLanguage = (language: string) => {
+    setIsLoading(true);
+    setLanguage(language);
+    setPage(1);
+  };
+
   const value = {
     language,
     likes,
     seed,
     page,
-    setLanguage,
+    updateLanguage,
     setLikes,
-    setSeed,
+    updateSeed,
     setPage,
     loadMore,
     hasMore,

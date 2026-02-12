@@ -6,14 +6,13 @@ import { getRandomSeed } from "../../../../utils/getRandomSeed";
 import { useSongs } from "../../../../hooks/useSongs";
 
 export function Seed() {
-  const { seed, setSeed, setPage } = useDataConfig();
+  const { seed, updateSeed, setPage } = useDataConfig();
   const { setSongs } = useSongs();
 
   const handleClick = () => {
     const newSeed = getRandomSeed();
     setSongs([]);
-    setSeed(newSeed);
-    setPage(1);
+    updateSeed(newSeed);
   };
 
   return (
@@ -25,8 +24,7 @@ export function Seed() {
           const digitsOnly = e.target.value.replace(/\D/g, "");
           if (digitsOnly.length <= 20) {
             setSongs([]);
-            setSeed(digitsOnly);
-            setPage(1);
+            updateSeed(digitsOnly);
           }
         }}
         suffix={

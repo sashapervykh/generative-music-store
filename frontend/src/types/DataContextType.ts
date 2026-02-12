@@ -1,3 +1,5 @@
+import type { Views } from "./Views";
+
 export interface DataContextType {
   language: string;
   seed: string;
@@ -6,7 +8,9 @@ export interface DataContextType {
   setSeed: (seed: string) => void;
   setLikes: (likes: number) => void;
   setLanguage: (language: string) => void;
-  setPage: (page: number) => void;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   loadMore: () => void;
   hasMore: boolean;
+  view: Views;
+  setView: React.Dispatch<React.SetStateAction<Views>>;
 }

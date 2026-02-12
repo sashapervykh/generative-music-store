@@ -3,9 +3,10 @@ import { useDataConfig } from "../../hooks/useDataConfig";
 import { API_ROUTES } from "../../constants/apiRoutes";
 import { useSongs } from "../../hooks/useSongs";
 import type { Song } from "../../types/Song";
+import { VIEWS } from "../../constants/views";
 
 export function DataLoader({ children }: { children: ReactNode }) {
-  const { language, seed, likes, page } = useDataConfig();
+  const { language, seed, likes, page, view } = useDataConfig();
   const { setSongs } = useSongs();
 
   useEffect(() => {
@@ -15,7 +16,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
     const timeoutId = setTimeout(async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}&page=${page}&view=gallery`,
+          `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}&page=${page}&view=${view}`,
           { signal },
         );
 
@@ -23,11 +24,14 @@ export function DataLoader({ children }: { children: ReactNode }) {
           throw new Error("Failed request");
         }
 
-        console.log(response);
         const songsData = await response.json();
-        setSongs((s: Song[]) => {
-          return s.concat(songsData);
-        });
+        if (view === VIEWS.GALLERY) {
+          setSongs((s: Song[]) => {
+            return s.concat(songsData);
+          });
+          return;
+        }
+        setSongs(songsData);
       } catch (error) {
         console.error("Request error:", error);
       }

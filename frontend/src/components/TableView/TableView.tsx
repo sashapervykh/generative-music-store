@@ -64,7 +64,6 @@ export function TableView() {
       expandable={{
         expandRowByClick: true,
         expandedRowRender: (record) => {
-          console.log(record.image);
           return (
             <div className="grid grid-cols-[200px_auto] gap-4 justify-center">
               <div className="flex flex-col">

@@ -1,9 +1,12 @@
 import path from "path";
 import { pathToFileURL } from "url";
-import type { ReviewTemplate } from "~/types/ReviewTemplate.js";
-import type { Song } from "~/types/Song.js";
-import { getSongSeed } from "~/utils/getSongSeed.js";
-import { SeededRNG } from "~/utils/seededRNG.js";
+import type { Song } from "../types/Song.js";
+import type { ReviewTemplate } from "../types/ReviewTemplate.js";
+import { getSongSeed } from "../utils/getSongSeed.js";
+import { SeededRNG } from "../utils/seededRNG.js";
+import reviewTemplates from "../assets/review/review.json" with { type: "json" };
+
+const typeReviewTemplates: Record<string, ReviewTemplate> = reviewTemplates;
 
 class ReviewService {
   async createAllReviews(
@@ -46,16 +49,8 @@ class ReviewService {
 
   private async getReviewsTemplate(language: string) {
     try {
-      const pathToFile = path.join(
-        process.cwd(),
-        `src/assets/review/${language}.json`,
-      );
-      const fileUrl = pathToFileURL(pathToFile).href;
-      const reviewTemplates: ReviewTemplate = await import(fileUrl, {
-        assert: { type: "json" },
-      });
-
-      return reviewTemplates;
+      let reviewTemplate = typeReviewTemplates[language];
+      return reviewTemplate;
     } catch (error) {
       console.log(error);
     }

@@ -1,13 +1,11 @@
 import type { Request, Response } from "express";
-import type { ParsedQs } from "qs";
-import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
-import { SONGS_PER_VIEW } from "~/constants/views.js";
-import { imageGenerator } from "~/services/imageService/imageGenerator.js";
-import { likesService } from "~/services/likes.service.js";
-import { musicService } from "~/services/music.service.js";
-import { reviewService } from "~/services/review.service.js";
-import { textGenerator } from "~/services/textGenerator.js";
-import { validateQuery } from "~/utils/validateQuery.js";
+import { validateQuery } from "../utils/validateQuery.js";
+import { SONGS_PER_VIEW } from "../constants/views.js";
+import { textGenerator } from "../services/textGenerator.js";
+import { imageGenerator } from "../services/imageService/imageGenerator.js";
+import { reviewService } from "../services/review.service.js";
+import { musicService } from "../services/music.service.js";
+import { likesService } from "../services/likes.service.js";
 
 class GeneratorController {
   async generateData(req: Request, res: Response) {

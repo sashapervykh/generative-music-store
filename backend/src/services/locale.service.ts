@@ -1,6 +1,6 @@
-import type { Locales } from "~/types/Locales.js";
 import locales from "../assets/locale/locales.json" with { type: "json" };
-import type { FrontendLocale } from "~/types/FrontendLocale.js";
+import type { FrontendLocale } from "../types/FrontendLocale.js";
+import type { Locales } from "../types/Locales.js";
 
 const typedLocales: Locales = locales;
 
@@ -14,7 +14,6 @@ class LocaleService {
         label: typedLocales[locale].label,
       });
     }
-    console.log(localesData);
     return localesData;
   }
 }

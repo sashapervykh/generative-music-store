@@ -1,4 +1,4 @@
-import { VirtuosoGrid } from "react-virtuoso";
+import { VirtuosoGrid, type GridComponents } from "react-virtuoso";
 import { useSongs } from "../../hooks/useSongs";
 import { SongCard } from "./components/SongCard";
 import { useDataConfig } from "../../hooks/useDataConfig";
@@ -7,16 +7,18 @@ export default function GalleryView() {
   const { songs } = useSongs();
   const { hasMore, loadMore } = useDataConfig();
 
-  const GridComponents = {
-    List: ({ children, ...props }: any) => (
-      <div
-        {...props}
-        className="grid grid-cols-1 mt-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6"
-      >
-        {children}
-      </div>
-    ),
-    Item: ({ children, ...props }: any) => (
+  const GridComponents: GridComponents = {
+    List: ({ children, ...props }) => {
+      return (
+        <div
+          {...props}
+          className="grid grid-cols-1 mt-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6"
+        >
+          {children}
+        </div>
+      );
+    },
+    Item: ({ children, ...props }) => (
       <div {...props} className="flex justify-center">
         {children}
       </div>

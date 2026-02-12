@@ -20,8 +20,9 @@ class GeneratorController {
         !view
       )
         throw new Error("Invalid arguments provided!");
-
+      console.log(view);
       const songsAmount = view === "gallery" ? 20 : SONGS_PER_PAGE;
+      console.log(songsAmount);
       const songs = textGenerator.generateAllSongs({
         language,
         seed,

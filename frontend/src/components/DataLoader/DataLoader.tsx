@@ -31,6 +31,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
           });
           return;
         }
+        console.log(songsData);
         setSongs(songsData);
       } catch (error) {
         console.error("Request error:", error);
@@ -41,7 +42,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
       clearTimeout(timeoutId);
       controller.abort();
     };
-  }, [language, seed, likes, page]);
+  }, [language, seed, likes, page, view]);
 
   return <>{children}</>;
 }

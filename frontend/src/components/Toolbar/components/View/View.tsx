@@ -4,13 +4,16 @@ import { VIEWS } from "../../../../constants/views";
 import { useDataConfig } from "../../../../hooks/useDataConfig";
 
 export function View() {
-  const { setView } = useDataConfig();
+  const { setView, setPage } = useDataConfig();
   return (
     <div className="flex ml-auto mr-0 items-center">
       <Segmented
         className="flex size-fit ml-auto mr-0"
         orientation="vertical"
-        onChange={(v) => setView(v)}
+        onChange={(v) => {
+          setView(v);
+          setPage(1);
+        }}
         options={[
           { value: VIEWS.TABLE, icon: <TableOutlined /> },
           { value: VIEWS.GALLERY, icon: <OrderedListOutlined /> },

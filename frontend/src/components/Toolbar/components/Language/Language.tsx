@@ -5,14 +5,17 @@ import { useLocales } from "../../../../hooks/useLocales";
 
 export function Language() {
   const { locales } = useLocales();
-  const { language, setLanguage } = useDataConfig();
+  const { language, setLanguage, setPage } = useDataConfig();
   return (
     <Label label={"language"}>
       <Select
         className="w-auto"
         value={language}
         id="language"
-        onChange={setLanguage}
+        onChange={(v) => {
+          setLanguage(v);
+          setPage(1);
+        }}
         options={locales}
       />
     </Label>

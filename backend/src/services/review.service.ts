@@ -13,7 +13,8 @@ class ReviewService {
     language: string,
   ) {
     const reviewTemplate = await this.getReviewsTemplate(language);
-    const songsWithReviews = [];
+    if (!reviewTemplate) throw new Error("Review templates not found");
+    const songsWithReviews: Song[] = [];
     songs.forEach((song) => {
       const review = this.createReview(seed, song, page, reviewTemplate);
       songsWithReviews.push({ ...song, review });

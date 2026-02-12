@@ -1,0 +1,34 @@
+{
+  "en_US": {
+    "value": "en_US",
+    "label": "English (USA)",
+    "genres": [
+      "Rock",
+      "Pop",
+      "Jazz",
+      "Hip Hop",
+      "Electronic",
+      "R&B",
+      "Country",
+      "Metal",
+      "Indie",
+      "Folk"
+    ]
+  },
+  "de": {
+    "value": "de",
+    "label": "German",
+    "genres": [
+      "Rock",
+      "Pop",
+      "Schlager",
+      "Volksmusik",
+      "Klassik",
+      "Hip-Hop",
+      "Techno",
+      "Metal",
+      "Indie",
+      "Deutschrap"
+    ]
+  }
+}

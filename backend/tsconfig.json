@@ -9,9 +9,6 @@
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,

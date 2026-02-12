@@ -1,13 +1,13 @@
 import { allFakers } from "@faker-js/faker";
 import type { Faker } from "@faker-js/faker";
-import type { Song } from "~/types/Song.js";
 import locales from "../assets/locale/locales.json" with { type: "json" };
-import type { Locales } from "~/types/Locales.js";
-import { getSongSeed } from "~/utils/getSongSeed.js";
-import { getRandomPhrase } from "~/utils/getRandomPhrase.js";
-import { SeededRNG } from "~/utils/seededRNG.js";
-import { ALBUM_PERCENT } from "~/constants/albumsPercent.js";
-import { PERSON_PERCENT } from "~/constants/personPercent.js";
+import type { Locales } from "../types/Locales.js";
+import type { Song } from "../types/Song.js";
+import { getSongSeed } from "../utils/getSongSeed.js";
+import { SeededRNG } from "../utils/seededRNG.js";
+import { getRandomPhrase } from "../utils/getRandomPhrase.js";
+import { PERSON_PERCENT } from "../constants/personPercent.js";
+import { ALBUM_PERCENT } from "../constants/albumsPercent.js";
 
 interface Props {
   seed: string;

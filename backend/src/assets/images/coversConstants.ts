@@ -1,5 +1,3 @@
-import { title } from "node:process";
-
 export const LIGHT_COLORS = [
   "#E2E8F0",
   "#F8FAFC",

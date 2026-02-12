@@ -1,11 +1,11 @@
-import type { Song } from "~/types/Song.js";
-import { getSongSeed } from "~/utils/getSongSeed.js";
-import { SeededRNG } from "~/utils/seededRNG.js";
 import pallets from "../../assets/images/colorPallets.json" with { type: "json" };
 import gradients from "../../assets/images/gradientTypes.json" with { type: "json" };
 import { CanvasRenderingContext2D, createCanvas } from "canvas";
 import { AVAILABLE_GRADIENTS } from "./availableGradient.js";
 import { DEFAULT_COLORS } from "./defaultColors.js";
+import type { Song } from "../../types/Song.js";
+import { getSongSeed } from "../../utils/getSongSeed.js";
+import { SeededRNG } from "../../utils/seededRNG.js";
 import {
   ARTIST_Y,
   DARK_STROKE,
@@ -19,7 +19,7 @@ import {
   TEXT_Y_ALIGN,
   TITLE_Y,
   WIDTH,
-} from "~/assets/images/coversConstants.js";
+} from "../../assets/images/coversConstants.js";
 
 const typedPallets: {
   name: string;
@@ -30,9 +30,6 @@ const typedPallets: {
 const typedGradients: string[] = gradients;
 
 class ImageGenerator {
-  width = WIDTH;
-  height = HEIGHT;
-
   createAllCovers(seed: string, songs: Song[], page: number) {
     const songsWithImage: Song[] = [];
     songs.forEach((song) => {
@@ -69,13 +66,13 @@ class ImageGenerator {
     const gradientFunction =
       AVAILABLE_GRADIENTS[type] ?? AVAILABLE_GRADIENTS.default;
     if (!gradientFunction) throw new Error("Gradient function is not received");
-    const gradient = gradientFunction(ctx, this.width, this.height);
+    const gradient = gradientFunction(ctx, WIDTH, HEIGHT);
     const [c1, c2, c3] = colors;
     gradient.addColorStop(0, c1 ?? DEFAULT_COLORS.FIRST_BACKGROUND);
     gradient.addColorStop(0.5, c2 ?? DEFAULT_COLORS.SECOND_BACKGROUND);
     gradient.addColorStop(1, c3 ?? DEFAULT_COLORS.THIRD_BACKGROUND);
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, this.width, this.height);
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
   }
 
   drawAllText(

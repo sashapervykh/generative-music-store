@@ -13,4 +13,6 @@ export interface DataContextType {
   hasMore: boolean;
   view: Views;
   setView: React.Dispatch<React.SetStateAction<Views>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }

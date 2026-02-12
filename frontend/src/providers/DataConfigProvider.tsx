@@ -14,6 +14,7 @@ export function DataConfigProvider({ children }: { children: ReactNode }) {
   const [seed, setSeed] = useState(DEFAULT_CONFIG.SEED.DEFAULT);
   const [page, setPage] = useState(DEFAULT_CONFIG.PAGE.DEFAULT);
   const [view, setView] = useState<Views>(VIEWS.TABLE);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const hasMore = page < MAX_GALLERY_SCROLL;
 
@@ -34,6 +35,8 @@ export function DataConfigProvider({ children }: { children: ReactNode }) {
     hasMore,
     view,
     setView,
+    isLoading,
+    setIsLoading,
   };
 
   return (

@@ -6,7 +6,7 @@ import type { Song } from "../../types/Song";
 import { VIEWS } from "../../constants/views";
 
 export function DataLoader({ children }: { children: ReactNode }) {
-  const { language, seed, likes, page, view } = useDataConfig();
+  const { language, seed, likes, page, view, setIsLoading } = useDataConfig();
   const { setSongs } = useSongs();
 
   useEffect(() => {
@@ -15,6 +15,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
 
     const timeoutId = setTimeout(async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}&page=${page}&view=${view}`,
           { signal },
@@ -35,6 +36,8 @@ export function DataLoader({ children }: { children: ReactNode }) {
         setSongs(songsData);
       } catch (error) {
         console.error("Request error:", error);
+      } finally {
+        setIsLoading(false);
       }
     }, 400);
 

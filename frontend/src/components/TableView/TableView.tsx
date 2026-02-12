@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "antd";
 import type { TableColumnsType, TablePaginationConfig } from "antd";
 import { useSongs } from "../../hooks/useSongs";
 import { useDataConfig } from "../../hooks/useDataConfig";
-import { LikeOutlined } from "@ant-design/icons";
+import { LikeOutlined, LoadingOutlined } from "@ant-design/icons";
 
 interface DataType {
   key: React.Key;
@@ -40,7 +40,7 @@ export function TableView() {
     music: song.music,
     likes: song.likes,
   }));
-  const { page, setPage } = useDataConfig();
+  const { page, setPage, isLoading } = useDataConfig();
 
   const handleChange = (pagination: TablePaginationConfig) => {
     setPage(pagination.current || 1);
@@ -55,6 +55,7 @@ export function TableView() {
         total: 1000,
         showSizeChanger: false,
       }}
+      loading={{ spinning: isLoading, indicator: <LoadingOutlined /> }}
       onChange={handleChange}
       onRow={() => {
         return {

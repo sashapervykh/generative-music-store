@@ -1,14 +1,14 @@
+import tonegenerator from "tonegenerator";
+import wavEncoder from "wav-encoder";
+import { getSongSeed } from "../utils/getSongSeed.js";
+import { SeededRNG } from "../utils/seededRNG.js";
 import {
   DURATIONS,
   NOTE_COUNTS,
   SAMPLE_RATES,
   SCALES,
-} from "~/constants/musicConstants.js";
-import { getSongSeed } from "~/utils/getSongSeed.js";
-import { SeededRNG } from "~/utils/seededRNG.js";
-import tonegenerator from "tonegenerator";
-import wavEncoder from "wav-encoder";
-import type { Song } from "~/types/Song.js";
+} from "../constants/musicConstants.js";
+import type { Song } from "../types/Song.js";
 
 class MusicService {
   async createAllSongs(seed: string, page: number, songs: Song[]) {

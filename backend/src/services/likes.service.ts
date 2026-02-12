@@ -1,6 +1,6 @@
-import type { Song } from "~/types/Song.js";
-import { getSongSeed } from "~/utils/getSongSeed.js";
-import { SeededRNG } from "~/utils/seededRNG.js";
+import type { Song } from "../types/Song.js";
+import { getSongSeed } from "../utils/getSongSeed.js";
+import { SeededRNG } from "../utils/seededRNG.js";
 
 class LikesService {
   async createAllLikes(
@@ -22,12 +22,8 @@ class LikesService {
   generateSongLikes(rng: SeededRNG, average: number): number {
     if (average <= 0) return 0;
     if (average >= 10) return 10;
-
     const k = Math.floor(average);
     const p = average - k;
-    // const threshold = Math.round(p * 100);
-    // const randInt = Math.floor(rand * 100);
-
     return k + (rng.float() < p ? 1 : 0);
   }
 }

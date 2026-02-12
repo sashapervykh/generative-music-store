@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { localeService } from "~/services/locale.service.js";
+import { localeService } from "../services/locale.service.js";
 
 class LocaleController {
   getAvailableLocales(req: Request, res: Response) {

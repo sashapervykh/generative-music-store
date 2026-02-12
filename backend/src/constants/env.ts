@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
-import { checkEnv } from "~/utils/checkEnv.js";
+
 import { ENV_NAMES } from "./envNames.js";
+import { checkEnv } from "../utils/checkEnv.js";
 
 dotenv.config();
 export const ENV = {

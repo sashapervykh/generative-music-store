@@ -1,4 +1,4 @@
-import { querySchema } from "~/types/schemas/querySchema.js";
+import { querySchema } from "../types/schemas/querySchema.js";
 
 export function validateQuery(params: unknown) {
   const result = querySchema.safeParse(params);

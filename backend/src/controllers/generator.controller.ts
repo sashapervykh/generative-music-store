@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
 import { imageGenerator } from "~/services/imageService/imageGenerator.js";
 import { likesService } from "~/services/likes.service.js";
 import { musicService } from "~/services/music.service.js";
@@ -8,20 +9,24 @@ import { textGenerator } from "~/services/textGenerator.js";
 class GeneratorController {
   async generateData(req: Request, res: Response) {
     try {
-      const { language, seed, likes, page } = req.query;
+      const { language, seed, likes, page, view } = req.query;
       if (
         !language ||
         typeof language !== "string" ||
         !seed ||
         typeof seed !== "string" ||
         !likes ||
-        !page
+        !page ||
+        !view
       )
         throw new Error("Invalid arguments provided!");
+
+      const songsAmount = view === "gallery" ? 20 : SONGS_PER_PAGE;
       const songs = textGenerator.generateAllSongs({
         language,
         seed,
         page: Number(page),
+        songsAmount,
       });
       const songsWithImages = imageGenerator.createAllCovers(
         seed,

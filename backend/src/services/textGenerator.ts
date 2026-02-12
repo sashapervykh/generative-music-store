@@ -11,18 +11,19 @@ interface Props {
   seed: string;
   language: string;
   page: number;
+  songsAmount: number;
 }
 
 class TextGenerator {
   allFakers: Record<string, Faker> = allFakers;
   locales: Locales = locales;
 
-  generateAllSongs({ language, seed, page }: Props): Song[] {
+  generateAllSongs({ language, seed, page, songsAmount }: Props): Song[] {
     const faker = this.allFakers[language];
     if (!faker) throw new Error("Unsupported locale!");
     const songs = [];
-    const startIndex = page * SONGS_PER_PAGE - SONGS_PER_PAGE;
-    const endIndex = page * SONGS_PER_PAGE;
+    const startIndex = page * songsAmount - songsAmount;
+    const endIndex = page * songsAmount;
     for (let i = startIndex; i < endIndex; i++) {
       songs.push(this.generateSong(faker, language, seed, page, i));
     }

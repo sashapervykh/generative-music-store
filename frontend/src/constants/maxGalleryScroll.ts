@@ -1,1 +1,1 @@
-export const MAX_GALLERY_SCROLL = 200;
+export const MAX_GALLERY_SCROLL = 10;

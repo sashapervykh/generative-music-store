@@ -8,5 +8,5 @@ export interface DataContextType {
   setLanguage: (language: string) => void;
   setPage: (page: number) => void;
   loadMore: () => void;
-  hasMore: () => boolean;
+  hasMore: boolean;
 }

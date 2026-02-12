@@ -2,6 +2,7 @@ import { useEffect, type ReactNode } from "react";
 import { useDataConfig } from "../../hooks/useDataConfig";
 import { API_ROUTES } from "../../constants/apiRoutes";
 import { useSongs } from "../../hooks/useSongs";
+import type { Song } from "../../types/Song";
 
 export function DataLoader({ children }: { children: ReactNode }) {
   const { language, seed, likes, page } = useDataConfig();
@@ -24,7 +25,9 @@ export function DataLoader({ children }: { children: ReactNode }) {
 
         console.log(response);
         const songsData = await response.json();
-        setSongs(songsData);
+        setSongs((s: Song[]) => {
+          return s.concat(songsData);
+        });
       } catch (error) {
         console.error("Request error:", error);
       }

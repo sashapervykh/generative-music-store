@@ -12,12 +12,10 @@ export function DataConfigProvider({ children }: { children: ReactNode }) {
   const [seed, setSeed] = useState(DEFAULT_CONFIG.SEED.DEFAULT);
   const [page, setPage] = useState(DEFAULT_CONFIG.PAGE.DEFAULT);
 
-  const loadMore = () => {
-    setPage((p) => p + 1);
-  };
+  const hasMore = page < MAX_GALLERY_SCROLL;
 
-  const hasMore = () => {
-    return page < MAX_GALLERY_SCROLL;
+  const loadMore = () => {
+    if (hasMore) setPage((p) => p + 1);
   };
 
   const value = {

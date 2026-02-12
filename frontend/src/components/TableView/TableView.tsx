@@ -78,7 +78,6 @@ export function TableView() {
                 <audio
                   className="m-[1.5rem_auto_0px_auto]"
                   src={record.music}
-                  title="new.mp3"
                   controls
                 ></audio>
               </div>

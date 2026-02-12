@@ -6,7 +6,7 @@ import { useDataConfig } from "../../../../hooks/useDataConfig";
 export function View() {
   const { setView, setPage } = useDataConfig();
   return (
-    <div className="flex ml-auto mr-0 items-center">
+    <div>
       <Segmented
         className="flex size-fit ml-auto mr-0"
         orientation="vertical"

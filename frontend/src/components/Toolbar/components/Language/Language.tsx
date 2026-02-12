@@ -6,7 +6,7 @@ import { useSongs } from "../../../../hooks/useSongs";
 
 export function Language() {
   const { locales } = useLocales();
-  const { language, updateLanguage, setPage } = useDataConfig();
+  const { language, updateLanguage } = useDataConfig();
   const { setSongs } = useSongs();
   return (
     <Label label={"language"}>

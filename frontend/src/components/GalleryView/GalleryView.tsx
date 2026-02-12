@@ -51,7 +51,6 @@ export default function GalleryView() {
         components={GridComponents}
         itemContent={(_, song) => <SongCard song={song} />}
         endReached={loadMore}
-        overscan={200}
       />
     </div>
   );

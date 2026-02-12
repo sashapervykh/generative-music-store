@@ -27,7 +27,12 @@ export function LocaleLoader({ children }: { children: ReactNode }) {
     requestLocales();
   }, []);
 
-  if (!locales) return <Spin />;
+  if (!locales)
+    return (
+      <div className="flex w-full h-full justify-center p-[40vh]">
+        <Spin />
+      </div>
+    );
 
   return <>{children}</>;
 }

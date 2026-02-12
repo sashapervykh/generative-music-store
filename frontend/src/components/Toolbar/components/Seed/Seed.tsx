@@ -6,7 +6,7 @@ import { getRandomSeed } from "../../../../utils/getRandomSeed";
 import { useSongs } from "../../../../hooks/useSongs";
 
 export function Seed() {
-  const { seed, updateSeed, setPage } = useDataConfig();
+  const { seed, updateSeed } = useDataConfig();
   const { setSongs } = useSongs();
 
   const handleClick = () => {

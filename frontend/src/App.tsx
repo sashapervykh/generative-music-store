@@ -2,7 +2,6 @@ import { AppTitle } from "./components/AppTitle/AppTitle";
 import { DataLoader } from "./components/DataLoader/DataLoader";
 import { LocaleLoader } from "./components/LocaleLoader/LocaleLoader";
 import { Songs } from "./components/Songs/Songs";
-import { TableView } from "./components/TableView/TableView";
 import { Toolbar } from "./components/Toolbar/Toolbar";
 import { DataConfigProvider } from "./providers/DataConfigProvider";
 import { LocalesProvider } from "./providers/LocalesProvider";

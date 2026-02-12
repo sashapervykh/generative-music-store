@@ -14,7 +14,6 @@ class LocaleService {
         label: typedLocales[locale].label,
       });
     }
-    console.log(localesData);
     return localesData;
   }
 }

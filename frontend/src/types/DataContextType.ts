@@ -7,4 +7,6 @@ export interface DataContextType {
   setLikes: (likes: number) => void;
   setLanguage: (language: string) => void;
   setPage: (page: number) => void;
+  loadMore: () => void;
+  hasMore: () => boolean;
 }

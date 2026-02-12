@@ -14,7 +14,7 @@ export function DataLoader({ children }: { children: ReactNode }) {
     const timeoutId = setTimeout(async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}&page=${page}`,
+          `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}&page=${page}&view=gallery`,
           { signal },
         );
 

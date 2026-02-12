@@ -21,7 +21,14 @@ export function Seed() {
       <Input
         id="Seed"
         value={seed}
-        onChange={(e) => setSeed(e.target.value)}
+        onChange={(e) => {
+          const digitsOnly = e.target.value.replace(/\D/g, "");
+          if (digitsOnly.length <= 20) {
+            setSongs([]);
+            setSeed(digitsOnly);
+            setPage(1);
+          }
+        }}
         suffix={
           <ReloadOutlined className="cursor-pointer" onClick={handleClick} />
         }

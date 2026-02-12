@@ -56,7 +56,13 @@ export function TableView() {
         showSizeChanger: false,
       }}
       onChange={handleChange}
+      onRow={() => {
+        return {
+          className: "cursor-pointer",
+        };
+      }}
       expandable={{
+        expandRowByClick: true,
         expandedRowRender: (record) => {
           console.log(record.image);
           return (

@@ -4,7 +4,7 @@ export interface Song {
   artist: string;
   album: string;
   genre: string;
-  image: string;
+  cover: string;
   review: string;
   music: string;
   likes: number;

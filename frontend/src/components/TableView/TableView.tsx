@@ -12,7 +12,7 @@ interface DataType {
   artist: string;
   album: string;
   genre: string;
-  image: string;
+  cover: string;
   review: string;
   music: string;
   likes: number;
@@ -35,7 +35,7 @@ export function TableView() {
     artist: song.artist,
     album: song.album,
     genre: song.genre,
-    image: song.image,
+    cover: song.cover,
     review: song.review,
     music: song.music,
     likes: song.likes,
@@ -68,7 +68,7 @@ export function TableView() {
           return (
             <div className="grid grid-cols-[200px_auto] gap-4 justify-center">
               <div className="flex flex-col">
-                <img className="flex m-auto rounded-xl" src={record.image} />
+                <img className="flex m-auto rounded-xl" src={record.cover} />
                 <p className="flex m-[0.2rem_auto_0px_auto] gap-1.5">
                   <LikeOutlined /> {record.likes}
                 </p>

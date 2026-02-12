@@ -20,11 +20,9 @@ export function DataLoader({ children }: { children: ReactNode }) {
           `${import.meta.env.VITE_API_URL}${API_ROUTES.GENERATE}?language=${language}&seed=${seed}&likes=${likes}&page=${page}&view=${view}`,
           { signal },
         );
-
         if (!response.ok) {
           throw new Error("Failed request");
         }
-
         const songsData = await response.json();
         if (view === VIEWS.GALLERY) {
           setSongs((s: Song[]) => {
@@ -32,7 +30,6 @@ export function DataLoader({ children }: { children: ReactNode }) {
           });
           return;
         }
-        console.log(songsData);
         setSongs(songsData);
       } catch (error) {
         console.error("Request error:", error);

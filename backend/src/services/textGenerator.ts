@@ -7,6 +7,7 @@ import { getSongSeed } from "~/utils/getSongSeed.js";
 import { getRandomPhrase } from "~/utils/getRandomPhrase.js";
 import { SeededRNG } from "~/utils/seededRNG.js";
 import { ALBUM_PERCENT } from "~/constants/albumsPercent.js";
+import { PERSON_PERCENT } from "~/constants/personPercent.js";
 
 interface Props {
   seed: string;
@@ -43,7 +44,7 @@ class TextGenerator {
     const seededRNG = new SeededRNG(songSeed.toString());
     faker.seed(fakerSeed);
     const title = this.createTitle(faker, seededRNG);
-    const artist = this.createArtist(faker);
+    const artist = this.createArtist(faker, seededRNG);
     const album = this.createAlbum(faker, seededRNG);
     const genre = this.createGenre(language, index);
     return { id: index + 1, title, artist, album, genre };
@@ -58,8 +59,10 @@ class TextGenerator {
     return getRandomPhrase(faker, seededRNG);
   }
 
-  private createArtist(faker: Faker) {
-    return faker.person.fullName();
+  private createArtist(faker: Faker, seededRNG: SeededRNG) {
+    const isPerson = seededRNG.float() < PERSON_PERCENT;
+    if (isPerson) return faker.person.fullName();
+    return getRandomPhrase(faker, seededRNG);
   }
 
   private createGenre(language: string, index: number) {

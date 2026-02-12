@@ -3,13 +3,16 @@ import { Label } from "../../../../shared/components/Label/Label";
 import { ReloadOutlined } from "@ant-design/icons";
 import { useDataConfig } from "../../../../hooks/useDataConfig";
 import { getRandomSeed } from "../../../../utils/getRandomSeed";
+import { useSongs } from "../../../../hooks/useSongs";
 
 export function Seed() {
-  const { seed, setSeed } = useDataConfig();
+  const { seed, updateSeed } = useDataConfig();
+  const { setSongs } = useSongs();
 
   const handleClick = () => {
     const newSeed = getRandomSeed();
-    setSeed(newSeed);
+    setSongs([]);
+    updateSeed(newSeed);
   };
 
   return (
@@ -17,7 +20,13 @@ export function Seed() {
       <Input
         id="Seed"
         value={seed}
-        onChange={(e) => setSeed(e.target.value)}
+        onChange={(e) => {
+          const digitsOnly = e.target.value.replace(/\D/g, "");
+          if (digitsOnly.length <= 20) {
+            setSongs([]);
+            updateSeed(digitsOnly);
+          }
+        }}
         suffix={
           <ReloadOutlined className="cursor-pointer" onClick={handleClick} />
         }

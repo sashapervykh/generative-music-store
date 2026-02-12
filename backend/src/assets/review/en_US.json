@@ -1,0 +1,103 @@
+{
+  "openings": [
+    "The {{adjective}} track that immediately captures attention.",
+    "From the very first note, this song delivers the {{adjective}} atmosphere.",
+    "An undeniably {{adjective}} release that stands out in today's music landscape.",
+    "This {{adjective}} composition sets the tone with confidence.",
+    "The {{adjective}} piece that blends modern production with timeless emotion."
+  ],
+  "production": [
+    "Layered {{instrument}} textures blend seamlessly with {{productionElement}}.",
+    "The {{instrument}} arrangements are supported by {{productionElement}}.",
+    "Subtle {{instrument}} accents add depth to the {{productionElement}}.",
+    "The production features {{productionElement}} and carefully balanced {{instrument}} lines.",
+    "Dynamic shifts between {{instrument}} and {{productionElement}} create a compelling soundscape."
+  ],
+  "emotion": [
+    "It evokes a strong sense of {{mood}} throughout.",
+    "The track carries an unmistakable feeling of {{mood}}.",
+    "Listeners may find themselves immersed in its {{mood}} character.",
+    "Its emotional core is rooted in {{mood}} expression.",
+    "The overall tone radiates {{mood}} energy."
+  ],
+  "closing": [
+    "A memorable addition to any playlist.",
+    "A release that rewards repeated listening.",
+    "An impressive showcase of artistic direction.",
+    "A standout track with lasting appeal.",
+    "A polished and engaging musical experience."
+  ],
+  "adjectives": [
+    "atmospheric",
+    "vibrant",
+    "melodic",
+    "immersive",
+    "energetic",
+    "introspective",
+    "dynamic",
+    "uplifting",
+    "haunting",
+    "cinematic",
+    "groovy",
+    "experimental",
+    "minimalistic",
+    "nostalgic",
+    "powerful",
+    "smooth",
+    "electrifying",
+    "dreamlike",
+    "intense",
+    "soulful"
+  ],
+  "moods": [
+    "euphoria",
+    "melancholy",
+    "optimism",
+    "tension",
+    "serenity",
+    "nostalgia",
+    "excitement",
+    "reflection",
+    "joy",
+    "longing",
+    "anticipation",
+    "confidence",
+    "warmth",
+    "mystery",
+    "freedom"
+  ],
+  "instruments": [
+    "synth",
+    "guitar",
+    "piano",
+    "bass",
+    "drum",
+    "string",
+    "vocal",
+    "percussion",
+    "brass",
+    "pad",
+    "arpeggiator",
+    "organ",
+    "lead melody",
+    "rhythm section",
+    "electronic beat"
+  ],
+  "productionElements": [
+    "crisp percussion",
+    "deep basslines",
+    "lush harmonies",
+    "tight rhythms",
+    "layered arrangements",
+    "reverb-drenched textures",
+    "clean mixing",
+    "rich sound design",
+    "modern mastering",
+    "textured soundscapes",
+    "subtle distortion",
+    "polished transitions",
+    "balanced dynamics",
+    "pulsating beats",
+    "ambient effects"
+  ]
+}

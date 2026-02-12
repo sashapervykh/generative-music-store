@@ -1,2 +1,2 @@
-export const seedMultiplier = 1000n;
-export const pageMultiplier = 100n;
+export const SEED_MULTIPLIER = 1000n;
+export const PAGE_MULTIPLIER = 100n;

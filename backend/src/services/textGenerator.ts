@@ -1,32 +1,33 @@
 import { allFakers } from "@faker-js/faker";
 import type { Faker } from "@faker-js/faker";
 import type { Song } from "~/types/Song.js";
-import locales from "../locale/locales.json" with { type: "json" };
+import locales from "../assets/locale/locales.json" with { type: "json" };
 import type { Locales } from "~/types/Locales.js";
-import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
-import { pageMultiplier, seedMultiplier } from "~/constants/seedNumbers.js";
+import { getSongSeed } from "~/utils/getSongSeed.js";
+import { getRandomPhrase } from "~/utils/getRandomPhrase.js";
+import { SeededRNG } from "~/utils/seededRNG.js";
+import { ALBUM_PERCENT } from "~/constants/albumsPercent.js";
+import { PERSON_PERCENT } from "~/constants/personPercent.js";
 
 interface Props {
   seed: string;
   language: string;
   page: number;
+  songsAmount: number;
 }
 
 class TextGenerator {
   allFakers: Record<string, Faker> = allFakers;
   locales: Locales = locales;
 
-  generateAllSongs({ language, seed, page }: Props): Song[] {
+  generateAllSongs({ language, seed, page, songsAmount }: Props): Song[] {
     const faker = this.allFakers[language];
     if (!faker) throw new Error("Unsupported locale!");
     const songs = [];
-    const startIndex = page * SONGS_PER_PAGE - SONGS_PER_PAGE;
-    const endIndex = page * SONGS_PER_PAGE;
-    console.log(page, language);
+    const startIndex = page * songsAmount - songsAmount;
+    const endIndex = page * songsAmount;
     for (let i = startIndex; i < endIndex; i++) {
-      console.log(i);
       songs.push(this.generateSong(faker, language, seed, page, i));
-      console.log(i);
     }
     return songs;
   }
@@ -38,30 +39,30 @@ class TextGenerator {
     page: number,
     index: number,
   ) {
-    const songSeed = this.getSongSeed(seed, page, index);
-    faker.seed(songSeed);
-    const title = this.createTitle(faker);
-    const artist = this.createArtist(faker);
-    const album = this.createAlbum(faker);
+    const songSeed = getSongSeed(seed, page, index);
+    const fakerSeed = this.getFakerSeed(songSeed);
+    const seededRNG = new SeededRNG(songSeed.toString());
+    faker.seed(fakerSeed);
+    const title = this.createTitle(faker, seededRNG);
+    const artist = this.createArtist(faker, seededRNG);
+    const album = this.createAlbum(faker, seededRNG);
     const genre = this.createGenre(language, index);
     return { id: index + 1, title, artist, album, genre };
   }
 
-  private getSongSeed(seed: string, page: number, index: number) {
-    const songSeed =
-      BigInt(seed) * seedMultiplier +
-      BigInt(page) * pageMultiplier +
-      BigInt(index);
-    const fakerSeed = Number(songSeed % BigInt(Number.MAX_SAFE_INTEGER));
+  private getFakerSeed(seed: bigint) {
+    const fakerSeed = Number(seed % BigInt(Number.MAX_SAFE_INTEGER));
     return fakerSeed;
   }
 
-  private createTitle(faker: Faker) {
-    return this.getAdjectiveNoun(faker);
+  private createTitle(faker: Faker, seededRNG: SeededRNG) {
+    return getRandomPhrase(faker, seededRNG);
   }
 
-  private createArtist(faker: Faker) {
-    return faker.person.fullName();
+  private createArtist(faker: Faker, seededRNG: SeededRNG) {
+    const isPerson = seededRNG.float() < PERSON_PERCENT;
+    if (isPerson) return faker.person.fullName();
+    return getRandomPhrase(faker, seededRNG);
   }
 
   private createGenre(language: string, index: number) {
@@ -72,21 +73,10 @@ class TextGenerator {
     return genre;
   }
 
-  private createAlbum(faker: Faker) {
-    return this.getTwoAdjectiveNoun(faker);
-  }
-
-  private getAdjectiveNoun(faker: Faker) {
-    return `${faker.word.adjective()} ${faker.word.noun()}`;
-  }
-  private getTwoAdjectiveNoun(faker: Faker) {
-    return `${faker.word.adjective()} ${faker.word.adjective()} ${faker.word.noun()}`;
-  }
-  private getVerbNoun(faker: Faker) {
-    return `${faker.word.verb()} ${faker.word.noun()}`;
-  }
-  private getVerbAdjectiveNoun(faker: Faker) {
-    return `${faker.word.verb()} ${faker.word.adjective()} ${faker.word.noun()}`;
+  private createAlbum(faker: Faker, seededRNG: SeededRNG) {
+    const isAlbum = seededRNG.float() < ALBUM_PERCENT;
+    if (isAlbum) return getRandomPhrase(faker, seededRNG);
+    return "Single";
   }
 }
 

@@ -1,26 +1,50 @@
 import type { Request, Response } from "express";
+import type { ParsedQs } from "qs";
+import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
+import { SONGS_PER_VIEW } from "~/constants/views.js";
+import { imageGenerator } from "~/services/imageService/imageGenerator.js";
+import { likesService } from "~/services/likes.service.js";
+import { musicService } from "~/services/music.service.js";
+import { reviewService } from "~/services/review.service.js";
 import { textGenerator } from "~/services/textGenerator.js";
+import { validateQuery } from "~/utils/validateQuery.js";
 
 class GeneratorController {
-  generateData(req: Request, res: Response) {
+  async generateData(req: Request, res: Response) {
     try {
-      const { language, seed, likes, page } = req.query;
-      if (
-        !language ||
-        typeof language !== "string" ||
-        !seed ||
-        typeof seed !== "string" ||
-        !likes ||
-        !page
-      )
-        throw new Error("Invalid arguments provided!");
-      const data = textGenerator.generateAllSongs({
+      const { language, seed, likes, page, view } = validateQuery(req.query);
+      const songsAmount = SONGS_PER_VIEW[view];
+      const songs = textGenerator.generateAllSongs({
         language,
         seed,
         page: Number(page),
+        songsAmount,
       });
-      res.status(200).json(data);
+      const songsWithImages = imageGenerator.createAllCovers(
+        seed,
+        songs,
+        Number(page),
+      );
+      const songsWithReviews = await reviewService.createAllReviews(
+        seed,
+        songsWithImages,
+        Number(page),
+        language,
+      );
+      const songsWithMusic = await musicService.createAllSongs(
+        seed,
+        Number(page),
+        songsWithReviews,
+      );
+      const songsWithLikes = await likesService.createAllLikes(
+        seed,
+        Number(page),
+        songsWithMusic,
+        Number(likes),
+      );
+      res.status(200).json(songsWithLikes);
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: error });
     }
   }

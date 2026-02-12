@@ -15,7 +15,7 @@ export function Likes() {
     <Label label="Likes">
       <div className="space-y-2">
         <Slider
-          className="w-full"
+          className="w-full min-w-50"
           marks={marks}
           step={DEFAULT_CONFIG.LIKES.STEP}
           value={likes}

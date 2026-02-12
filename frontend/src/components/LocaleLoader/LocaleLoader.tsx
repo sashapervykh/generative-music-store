@@ -18,7 +18,6 @@ export function LocaleLoader({ children }: { children: ReactNode }) {
         }
 
         const locales = await response.json();
-        console.log(locales);
         setLocales(locales);
       } catch (error) {
         console.error("Request error:", error);

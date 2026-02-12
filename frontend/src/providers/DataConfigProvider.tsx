@@ -2,6 +2,9 @@ import { useState, type ReactNode } from "react";
 import { DataConfigContext } from "../contexts/DataConfigContext";
 import { DEFAULT_CONFIG } from "../constants/defaultConfig";
 import { useLocales } from "../hooks/useLocales";
+import { MAX_GALLERY_SCROLL } from "../constants/maxGalleryScroll";
+import type { Views } from "../types/Views";
+import { VIEWS } from "../constants/views";
 
 export function DataConfigProvider({ children }: { children: ReactNode }) {
   const { locales } = useLocales();
@@ -10,16 +13,42 @@ export function DataConfigProvider({ children }: { children: ReactNode }) {
   const [likes, setLikes] = useState(DEFAULT_CONFIG.LIKES.DEFAULT_LIKES);
   const [seed, setSeed] = useState(DEFAULT_CONFIG.SEED.DEFAULT);
   const [page, setPage] = useState(DEFAULT_CONFIG.PAGE.DEFAULT);
+  const [view, setView] = useState<Views>(VIEWS.TABLE);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const hasMore = page < MAX_GALLERY_SCROLL;
+
+  const loadMore = () => {
+    if (hasMore) setPage((p) => p + 1);
+  };
+
+  const updateSeed = (seed: string) => {
+    setIsLoading(true);
+    setSeed(seed);
+    setPage(1);
+  };
+
+  const updateLanguage = (language: string) => {
+    setIsLoading(true);
+    setLanguage(language);
+    setPage(1);
+  };
 
   const value = {
     language,
     likes,
     seed,
     page,
-    setLanguage,
+    updateLanguage,
     setLikes,
-    setSeed,
+    updateSeed,
     setPage,
+    loadMore,
+    hasMore,
+    view,
+    setView,
+    isLoading,
+    setIsLoading,
   };
 
   return (

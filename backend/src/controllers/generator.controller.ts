@@ -1,28 +1,19 @@
 import type { Request, Response } from "express";
+import type { ParsedQs } from "qs";
 import { SONGS_PER_PAGE } from "~/constants/songsPerPage.js";
+import { SONGS_PER_VIEW } from "~/constants/views.js";
 import { imageGenerator } from "~/services/imageService/imageGenerator.js";
 import { likesService } from "~/services/likes.service.js";
 import { musicService } from "~/services/music.service.js";
 import { reviewService } from "~/services/review.service.js";
 import { textGenerator } from "~/services/textGenerator.js";
+import { validateQuery } from "~/utils/validateQuery.js";
 
 class GeneratorController {
   async generateData(req: Request, res: Response) {
     try {
-      const { language, seed, likes, page, view } = req.query;
-      if (
-        !language ||
-        typeof language !== "string" ||
-        !seed ||
-        typeof seed !== "string" ||
-        !likes ||
-        !page ||
-        !view
-      )
-        throw new Error("Invalid arguments provided!");
-      console.log(view);
-      const songsAmount = view === "gallery" ? 20 : SONGS_PER_PAGE;
-      console.log(songsAmount);
+      const { language, seed, likes, page, view } = validateQuery(req.query);
+      const songsAmount = SONGS_PER_VIEW[view];
       const songs = textGenerator.generateAllSongs({
         language,
         seed,
